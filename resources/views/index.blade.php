@@ -36,12 +36,10 @@
         @endif
         <div class="box-form-login">
             <div class="header-login">
-                <div class="pic">
-                    <img src="{{asset('res/img/user.png')}}" alt="">
-                </div>
                 <div class="titulo-header">
                     <h3>Login</h3>
                 </div>
+                
             </div>
             <div class="body-login">
                 <form class="needs-validation" novalidate method="POST" action="{{route('admin')}}" >
@@ -126,7 +124,7 @@
     </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="{{asset('js/functions.js')}}"></script>
     <script src="{{asset('js/bootstrap.js')}}"></script>
 

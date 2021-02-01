@@ -4,9 +4,49 @@ $(function()
     modal()
     validate()
     csrf()
+    load(0, 1, '/api/admin/clientes')
+    
 })
 
+function carrMais()
+{
+    var initial = $('tbody tr').length;
 
+    load(initial,2, '/api/admin/clientes');
+}
+
+function load(init, max, url)
+{
+  let dados = {init: init, max: max}
+
+
+  $.getJSON(url, dados, function(data)
+  {
+    if(data[0].length > 0)
+    {
+      document.getElementById('carr').style.display = "flex"
+      for(i = 0 ; i < data[0].length; i++)
+      {
+        $('tbody').append(
+          '<tr>'
+          +
+          '<th scope="row">'+data[0][i].id+'</th>'
+          +
+          '<td>'+data[0][i].nome+'</td>'
+          +
+          '<td>'+data[0][i].email+'</td>'
+          +'</tr>')
+          var initial = $('tbody tr').length;
+          if(data[1] == initial){ document.getElementById('carr').style.display = "none"}  
+        }
+    }else
+    {
+      document.getElementById('carr').style.display = "none"
+    }
+
+
+  })
+}
 
 function modal ()
 {
