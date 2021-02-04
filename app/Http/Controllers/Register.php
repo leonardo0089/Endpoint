@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\User;
 use App\Mail\SendEmail;
 use Illuminate\Support\Facades\Mail;
@@ -91,7 +90,7 @@ class Register extends Controller
                 $upload = $file->storeAs('curriculos', $nameFile, 'novoCaminho');
 
                 $path = "C:".DIRECTORY_SEPARATOR."curriculos".DIRECTORY_SEPARATOR.$nameFile;
-                
+
                 return $path;    
             }
 
