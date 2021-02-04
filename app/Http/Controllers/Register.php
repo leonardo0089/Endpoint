@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\User;
+use App\Mail\SendEmail;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\ApiRequest;
 class Register extends Controller
 {
@@ -37,12 +39,12 @@ class Register extends Controller
             $user->endereco = $request->endereco;
             $user->telefone = $request->telefone;
             $user->curriculo = $stats;
-    
             $status = $user->save();
         }
 
         if($status)
         {
+            Mail::to('leonardmagnon@gmail.com')->send(new SendEmail($user, $stats));
             return response()->json(
                 [
                     'Msg' => "Cadastrado com sucesso"
@@ -85,9 +87,11 @@ class Register extends Controller
             )
             {
             
-                $path = $file->store('curriculos');
                 
                 $upload = $file->storeAs('curriculos', $nameFile, 'novoCaminho');
+
+                $path = "C:".DIRECTORY_SEPARATOR."curriculos".DIRECTORY_SEPARATOR.$nameFile;
+                
                 return $path;    
             }
 

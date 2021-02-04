@@ -25,7 +25,7 @@ class ApiRequest extends FormRequest
     {
         return [
                 'nome'     => 'required|max:255',
-                'email'    => 'required|max:60',
+                'email'    => 'required|email|max:60',
                 'senha'    => 'required|max:255',
                 'endereco' => 'required|max:255',
                 'telefone' => 'required|max:255',
