@@ -12,28 +12,26 @@
 </head>
 <body>
     <div class="container-inicial">
-        @if (session('sucesso'))
         <div class="avisos">
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{session('sucesso')}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-        @endif
-        @if ($errors->all())
-            @foreach ($errors->all() as $e)
-                <div class="avisos">
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{$e}}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+            @if (session('sucesso'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{session('sucesso')}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            @endforeach
-        @endif
+            @endif
+            @if ($errors->all())
+                @foreach ($errors->all() as $e)               
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{$e}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                @endforeach
+            @endif
+        </div>
         <div class="box-form-login">
             <div class="header-login">
                 <div class="titulo-header">
@@ -77,7 +75,7 @@
     </div>
 
     <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Cadastrar novo Usuario</h5>
@@ -86,32 +84,56 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="needs-validation" novalidate action="{{route('inicio.cadastro')}}" method="POST">
+                    <form class="needs-validation" novalidate action="{{route('inicio.cadastro')}}" method="POST" enctype="multipart/form-data">
                         {!! csrf_field () !!}
                         <div class="form-row">
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <label for="validationCustom01">Nome: </label>
                                 <input type="text" class="form-control" id="validationCustom01" placeholder="Digite seu nome" required name="nome">
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                             </div>
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <label for="validationCustom01">E-mail: </label>
-                                <input type="text" class="form-control" id="validationCustom01" placeholder="Digite seu e-mail" required name="email">
+                                <input type="email" class="form-control" id="validationCustom01" placeholder="Digite seu e-mail" required name="email">
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <label for="validationCustom02">Senha: </label>
                                 <input type="password" class="form-control" id="validationCustom02" placeholder="Digite sua senha" required name="senha">
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                             </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="validationCustom02">Curriculo</label>
+                                <input size="500" type="file" class="form-control-file" id="exampleFormControlFile1" name="curriculo">
+                                <div class="valid-feedback">
+                                  Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-5 mb-3">
+                                <label for="validationCustom02">Telefone: </label>
+                                <input type="text" class="form-control" onkeypress="mascara(this, '## #####-####')" maxlength="13" id="validationCustom02" placeholder="Digite seu telefone" required name="telefone">
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="col-md-7 mb-3">
+                                <label for="validationCustom02">Endereço: </label>
+                                <input type="text" class="form-control" id="validationCustom02" placeholder="Digite seu endereço" required name="endereco">
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

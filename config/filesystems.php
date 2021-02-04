@@ -54,6 +54,10 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'novoCaminho' => [
+            'driver' => 'local',
+            'root' => 'C:'.DIRECTORY_SEPARATOR,   
+        ],
 
         's3' => [
             'driver' => 's3',

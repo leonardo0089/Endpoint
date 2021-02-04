@@ -19,10 +19,7 @@
             <div class="body-da-nav">
                 <div class="links-das-nav">
                     <ul>
-                        <li><a href="{{route('admin.list.products')}}"><i class="fa fa-list-alt"></i> Listar Itens</a></li>
-                        <li><a href=""><i class="fa fa-id-badge"></i> Listar Usuarios</a></li>
-                        <li><a href=""><i class="fa fa-database"></i> Mudar Dados</a></li>
-                        <li><a href=""><i class="fa fa-power-off"></i> Logout</a></li>
+                        <li><a href="{{route('admin.list.products')}}"><i class="fa fa-user"></i> Lista Usuarios</a></li>
                     </ul>
                 </div>
             </div>

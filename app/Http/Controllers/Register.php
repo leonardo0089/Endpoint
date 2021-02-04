@@ -5,26 +5,29 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\User;
-
-class Cadastro extends Controller
+use App\Http\Requests\ApiRequest;
+class Register extends Controller
 {
-    /*public function cadastro(Request $request)
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(ApiRequest $request)
     {
-        $validate = $request->validate(
-            [
-                'nome'     => ['required', 'max:255'],
-                'email'    => ['required', 'max:60'],
-                'senha'    => ['required', 'max:255'],
-                'endereco' => ['required', 'max:255'],
-                'telefone' => ['required', 'max:255'],
-                'curriculo'=> ['required', 'max:500']
-            ]);
-    
+
         $user = new User();
+
         $stats = $this->takeaCv($request);
+
         if($stats == false)
         {
-            return redirect()->back()->withErrors('A extensão não é suportados e tambem o arquivo pode estar vazio');
+            return response()->json(
+                [
+                    'Msg' => "Arquivo não é do tipo adequado ou está vazio"
+                ],400);
         }else if(!is_bool($stats))
         {
             $user->nome = $request->get('nome');
@@ -37,22 +40,29 @@ class Cadastro extends Controller
     
             $status = $user->save();
         }
-        
-      
 
         if($status)
         {
-            return redirect()->route('inicial')->with('sucesso', 'Usuario cadastrado com sucesso !');
+            return response()->json(
+                [
+                    'Msg' => "Cadastrado com sucesso"
+                ],200);
         }
-        return redirect()->back()->withErrors('Erro ao cadastrar novo usuario !');
+            return response()->json(
+                [
+                    'Msg' => "Erro ao cadastrar"
+                ],404);
 
+        
     }
+
 
     private function ipClient(Request $request)
     {
         $ip_cliente = $request->ip();
         return $ip_cliente;
     }
+
 
     private function takeaCv(Request $request)
     {
@@ -83,6 +93,4 @@ class Cadastro extends Controller
 
             return false;
     }
-*/
-
 }

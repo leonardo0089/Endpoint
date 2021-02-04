@@ -1,10 +1,9 @@
 
 $(function()
 {
-    modal()
     validate()
     csrf()
-    load(0, 1, '/api/admin/clientes')
+    load(0, 5, '/api/admin/clientes')
     
 })
 
@@ -12,7 +11,7 @@ function carrMais()
 {
     var initial = $('tbody tr').length;
 
-    load(initial,2, '/api/admin/clientes');
+    load(initial,10, '/api/admin/clientes');
 }
 
 function load(init, max, url)
@@ -43,24 +42,20 @@ function load(init, max, url)
     {
       document.getElementById('carr').style.display = "none"
     }
-
-
   })
 }
 
-function modal ()
-{
-    $('mod').click(e => e.preventDefault())
-}
 
-function csrf()
-{
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-}
+function mascara(t, mask)
+  {
+      const i = t.value.length
+      const saida = mask.substring(1,0)
+      const texto = mask.substring(i)
+      if(texto.substring(0,1) != saida)
+      {
+          t.value += texto.substring(0,1)
+      }
+  }
 
 
 function validate()

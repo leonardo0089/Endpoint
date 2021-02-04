@@ -4,9 +4,11 @@
         <table class="table">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nome Produto</th>
-                <th scope="col">quantidade</th>
+                <th scope="col">IP</th>
+                <th scope="col">Nome Usuario</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Endereco</th>
               </tr>
             </thead>
             <tbody id="body-list">
