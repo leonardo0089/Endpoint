@@ -20,10 +20,9 @@ class SendEmail extends Mailable
      *
      * @return void
      */
-    public function __construct(User $user, $caminho)
+    public function __construct(User $user)
     {
         $this->user = $user;
-        $this->path = $caminho;
     }
 
     /**
@@ -37,7 +36,7 @@ class SendEmail extends Mailable
         $curriculo = \str_replace('/',DIRECTORY_SEPARATOR,$user->curriculo);
 
 
-        return $this->from('leonardmagnon@gmail.com')
+        return $this
         ->view('email')
         ->attach($curriculo,
         [

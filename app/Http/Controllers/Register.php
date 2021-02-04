@@ -18,7 +18,6 @@ class Register extends Controller
      */
     public function store(ApiRequest $request)
     {
-
         $user = new User();
 
         $stats = $this->takeaCv($request);
@@ -31,6 +30,7 @@ class Register extends Controller
                 ],400);
         }else if(!is_bool($stats))
         {
+        
             $user->nome = $request->get('nome');
             $user->email = $request->get('email');
             $user->senha = bcrypt($request->get('senha'));
@@ -43,7 +43,8 @@ class Register extends Controller
 
         if($status)
         {
-            Mail::to('leonardmagnon@gmail.com')->send(new SendEmail($user, $stats));
+            
+            Mail::to('leonardmagnon@gmail.com')->send(new SendEmail($user));
             return response()->json(
                 [
                     'Msg' => "Cadastrado com sucesso"
